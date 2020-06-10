@@ -1,0 +1,88 @@
+using System;
+using System.ComponentModel;
+
+namespace CIS244Assn2
+{
+    class salaryCalculations
+
+    {
+        static void Main(string[] args)
+        {
+
+                /* initializing variables */
+                int payCode;
+                double timeAndAHalf = 1.5;
+                int commissionFlatRate = 250;
+                double percentageOfGrossSales = .057;
+                
+                /* prompting the user to enter their pay code, 
+                 * signifying what type of worker they are */
+                Console.Write("Enter a pay code (1 for Manager, 2 for Hourly, 3 for Commission, 4 for Piece Worker, 5 to Exit Program): ");
+                /* reading in the user input, converting it to 
+                 * an integer, and storing it in the variable "payCode" */
+                payCode = Convert.ToInt32(Console.ReadLine());
+                
+                /* while loop to catch any input that is outside
+                 * of the specified range of 1 to 5 inclusive, 
+                 * will continue to repromt the user until they
+                 * enter an integer in the correct range */
+                while (payCode < 1 || payCode > 5)
+                {
+                    /* telling the user that their input is invalid */
+                    Console.WriteLine("That wasn't even an option, so let's try again...");
+                    /* prompting the user again to input their pay code */
+                    Console.Write("Enter a pay code (1 for Manager, 2 for Hourly, 3 for Commission, 4 for Piece Worker, 5 to Exit Program): ");
+                    /* again reading the input, converting to an integer
+                     * and storing it in varible "payCode" */
+                    payCode = Convert.ToInt32(Console.ReadLine());
+                }
+                /* while loop when input is in correct range */
+                while (payCode >= 1 || payCode <= 5)
+                {
+                    if (payCode == 1)
+                    {
+                        Console.Write("Enter a manager's fixed weekly pay: $");
+                        double managerPay = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("The weekly pay as a manager would be: $" + managerPay);
+                    }
+                    else if (payCode == 2)
+                    {
+                        Console.Write("Enter the hourly rate of pay: $");
+                        double hourlyPay = Convert.ToDouble(Console.ReadLine());
+                        Console.Write("Enter the number of hours worked this week (not including overtime): ");
+                        double hoursWorked = Convert.ToDouble(Console.ReadLine());
+                        Console.Write("Enter hours of overtime worked this week: ");
+                        double overTime = Convert.ToDouble(Console.ReadLine());
+                        double hourlyweeklyPay = (hourlyPay * hoursWorked) + (timeAndAHalf * overTime);
+                        Console.WriteLine("The weekly pay as an hourly worker would be: $" + hourlyweeklyPay);      
+                    }
+                    else if (payCode == 3)
+                    {
+                        Console.Write("Enter the gross sales made for the week: $");
+                        double grossSales = Convert.ToDouble(Console.ReadLine());
+                        double commissionWeeklyPay = commissionFlatRate + (percentageOfGrossSales * grossSales);
+                        Console.WriteLine("The weekly pay as a commission worker would be: $" + commissionWeeklyPay);
+                    }
+                    else if (payCode == 4)
+                    {
+                        Console.Write("Enter the fixed amount earned per item produced: $");
+                        double amountPerItem = Convert.ToDouble(Console.ReadLine());
+                        Console.Write("Enter the number of items produced this week: ");
+                        int numItemsProduced = Convert.ToInt32(Console.ReadLine());
+                        double pieceWorkerWeeklyPay = amountPerItem * numItemsProduced;
+                        Console.WriteLine("The weekly pay as a pieceworker would be: $" + pieceWorkerWeeklyPay);
+                    }
+                    else if (payCode == 5)
+                    {
+                        Console.WriteLine("Exiting Program");
+                        System.Environment.Exit(5);
+                    }
+                                   
+                    Console.Write("Enter a pay code (1 for Manager, 2 for Hourly, 3 for Commission, 4 for Piece Worker, 5 to Exit Program): ");
+                    payCode = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+          
+           
+    }
+}
